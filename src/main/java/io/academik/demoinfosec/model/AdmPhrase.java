@@ -1,6 +1,8 @@
 package io.academik.demoinfosec.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "adm_phrase")
@@ -13,6 +15,7 @@ public class AdmPhrase {
 
     private String author;
 
+    @Pattern(regexp = "[a-zA-Z ]*")
     private String phrase;
 
     public AdmPhrase() {

@@ -6,6 +6,7 @@ import io.academik.demoinfosec.util.RolesEnum;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -34,7 +35,7 @@ public class AdmPhraseController {
         return admPhraseRepository.findById(id);
     }
 
-    @PUT
+    @POST
     @RolesAllowed({RolesEnum.Constants.WEB_VALUE})
     public Response create(AdmPhrase phrase) {
         admPhraseRepository.create(phrase);
@@ -42,7 +43,8 @@ public class AdmPhraseController {
                 .path(phrase.getPhraseId().toString()).build()).build();
     }
 
-    @POST
+
+    @PUT
     @Path("/{id:[0-9][0-9]*}")
     @RolesAllowed({RolesEnum.Constants.WEB_VALUE})
     public Response update(@PathParam("id") Long id, AdmPhrase phrase) {
